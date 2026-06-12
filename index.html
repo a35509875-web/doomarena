@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doom Arena — Официальный сайт</title>
+    <style>
+        /* Общие стили и сброс */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #0b0c10;
+            color: #c5c6c7;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            overflow-x: hidden;
+        }
+
+        /* Задний фон с неоновым свечением */
+        .bg-glow {
+            position: fixed;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 46, 99, 0.1) 0%, rgba(0,0,0,0) 70%);
+            z-index: -1;
+        }
+
+        /* Шапка сайта */
+        header {
+            padding: 30px 20px;
+            text-align: center;
+        }
+
+        .logo {
+            font-size: 3rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            background: linear-gradient(45deg, #ff2e63, #ff6b6b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 20px rgba(255, 46, 99, 0.5);
+            margin-bottom: 5px;
+        }
+
+        .domain {
+            font-size: 0.9rem;
+            color: #66fcf1;
+            letter-spacing: 2px;
+            opacity: 0.8;
+        }
+
+        /* Главный контейнер */
+        main {
+            max-width: 800px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Навигация / Кнопки */
+        .nav-buttons {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 40px;
+            width: 100%;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            background: #1f2833;
+            color: #fff;
+            border: 2px solid #ff2e63;
+            padding: 15px 35px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: 0 4px 15px rgba(255, 46, 99, 0.2);
+        }
+
+        .btn:hover {
+            background: #ff2e63;
+            box-shadow: 0 0 25px rgba(255, 46, 99, 0.7);
+            transform: translateY(-3px);
+        }
+
+        .btn-download {
+            background: linear-gradient(45deg, #ff2e63, #ff6b6b);
+            border: none;
+        }
+        
+        .btn-download:hover {
+            background: linear-gradient(45deg, #ff6b6b, #ff2e63);
+            box-shadow: 0 0 30px rgba(255, 46, 99, 0.9);
+        }
+
+        /* Контентные блоки */
+        .content-section {
+            background: rgba(31, 40, 51, 0.6);
+            border-left: 5px solid #66fcf1;
+            padding: 30px;
+            border-radius: 4px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            display: none;
+            animation: fadeIn 0.5s ease forwards;
+            line-height: 1.6;
+            font-size: 1.1rem;
+            text-align: justify;
+        }
+
+        .content-section h2 {
+            color: #66fcf1;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            font-size: 1.5rem;
+            letter-spacing: 1px;
+        }
+
+        /* Анимация появления */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Подвал */
+        footer {
+            text-align: center;
+            padding: 20px;
+            font-size: 0.85rem;
+            color: #45f3ff;
+            opacity: 0.6;
+        }
+
+        /* Адаптивность для мобилок */
+        @media (max-width: 600px) {
+            .logo { font-size: 2.2rem; }
+            .nav-buttons { flex-direction: column; width: 100%; padding: 0 20px; }
+            .btn { width: 100%; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bg-glow"></div>
+
+    <header>
+        <div class="logo">Doom Arena</div>
+        <div class="domain">DOOMARENA.COM</div>
+    </header>
+
+    <main>
+        <div class="nav-buttons">
+            <!-- Кнопка скачивания. Укажи правильный путь к архиву в href -->
+            <a href="Doom_Arena.zip" download class="btn btn-download">Скачать игру</a>
+            <button class="btn" onclick="showSection('about')">Об игре</button>
+            <button class="btn" onclick="showSection('updates')">Об обновлениях</button>
+        </div>
+
+        <!-- Секция: Об игре -->
+        <div id="about" class="content-section">
+            <h2>О проекте Doom Arena</h2>
+            <p>
+                <strong>Doom Arena</strong> — это динамичный шутер с рейтрейсинг-миром, полностью созданный на Python! 
+                Игра представляет собой драйвовую пародию на легендарный Doom, но в более простом и концентрированном формате с битвами на арене против волн врагов.
+            </p>
+            <br>
+            <p>
+                Текущая версия включает в себя 1 пушку, 1 вид рядовых врагов, 1 арену и 1 мощного босса, который бросит вам вызов строго на 10-й волне. 
+                Так как игра является полностью локальной, её код открыт — вы можете модифицировать и настраивать проект полностью под себя!
+            </p>
+            <br>
+            <p>
+                <strong>В будущих обновлениях вас ждет:</strong> поддержка пользовательских модов, полноценное проработанное игровое меню, разнообразие арен, уникальные враги, новые боссы и, самое главное, полноценный <strong>Сюжетный режим</strong>. 
+                В более далекой перспективе планируется запуск <strong>Doom Arena Multiplayer (DAM)</strong>, который объединит в себе лучшие наработки первой, второй и третьей версий игры.
+            </p>
+        </div>
+
+        <!-- Секция: Об обновлениях -->
+        <div id="updates" class="content-section">
+            <h2>История обновлений</h2>
+            <p><strong>Версия v1.0 (Текущая от 12.06.2026)</strong></p>
+            <hr style="border: 0; height: 1px; background: #66fcf1; margin: 10px 0 15px 0; opacity: 0.3;">
+            <p>
+                Это самый первый релиз игры! На данный момент (12.06.2026) воссоздана базовая архитектура проекта:
+            </p>
+            <ul style="margin-left: 20px; margin-top: 10px; list-style-type: square;">
+                <li>Реализована 1 боевая арена;</li>
+                <li>Добавлен 1 вид стандартных врагов для разминки;</li>
+                <li>Доступно 1 мощное оружие;</li>
+                <li>Воссоздан 1 главный Босс (появляется только на 10-й волне).</li>
+            </ul>
+        </div>
+    </main>
+
+    <footer>
+        &copy; 2026 Doom Arena. Все права защищены. Локальная сборка v1.0
+    </footer>
+
+    <script>
+        // Функция для переключения вкладок
+        function showSection(sectionId) {
+            // Скрываем все секции
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.style.display = 'none';
+            });
+            
+            // Показываем выбранную секцию
+            const activeSection = document.getElementById(sectionId);
+            if (activeSection) {
+                activeSection.style.display = 'block';
+            }
+        }
+    </script>
+</body>
+</html>
