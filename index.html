@@ -72,7 +72,7 @@
             justify-content: center;
         }
 
-        /* Навигация / Кнопки */
+        /* Навигация / Главные кнопки */
         .nav-buttons {
             display: flex;
             gap: 20px;
@@ -98,20 +98,10 @@
             box-shadow: 0 4px 15px rgba(255, 46, 99, 0.2);
         }
 
-        .btn:hover {
+        .btn:hover, .btn.active {
             background: #ff2e63;
             box-shadow: 0 0 25px rgba(255, 46, 99, 0.7);
             transform: translateY(-3px);
-        }
-
-        .btn-download {
-            background: linear-gradient(45deg, #ff2e63, #ff6b6b);
-            border: none;
-        }
-        
-        .btn-download:hover {
-            background: linear-gradient(45deg, #ff6b6b, #ff2e63);
-            box-shadow: 0 0 30px rgba(255, 46, 99, 0.9);
         }
 
         /* Контентные блоки */
@@ -126,15 +116,72 @@
             animation: fadeIn 0.5s ease forwards;
             line-height: 1.6;
             font-size: 1.1rem;
-            text-align: justify;
+            width: 100%;
         }
 
         .content-section h2 {
             color: #66fcf1;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             text-transform: uppercase;
             font-size: 1.5rem;
             letter-spacing: 1px;
+        }
+
+        /* Стили для списка версий во вкладке Скачать */
+        .version-card {
+            background: rgba(11, 12, 16, 0.6);
+            border: 1px solid rgba(102, 252, 241, 0.2);
+            padding: 20px;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .version-info h3 {
+            color: #fff;
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+
+        .version-info p {
+            font-size: 0.9rem;
+            color: #a4a5a6;
+        }
+
+        /* Кнопки скачивания версий */
+        .btn-inner-download {
+            background: linear-gradient(45deg, #66fcf1, #45f3ff);
+            color: #0b0c10;
+            border: none;
+            padding: 10px 20px;
+            font-size: 0.95rem;
+            font-weight: bold;
+            border-radius: 4px;
+            text-decoration: none;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(102, 252, 241, 0.2);
+        }
+
+        .btn-inner-download:hover {
+            box-shadow: 0 0 20px rgba(102, 252, 241, 0.6);
+            transform: scale(1.05);
+        }
+
+        .latest-badge {
+            background: #ff2e63;
+            color: #fff;
+            font-size: 0.75rem;
+            padding: 2px 8px;
+            border-radius: 3px;
+            margin-left: 10px;
+            vertical-align: middle;
+            text-transform: uppercase;
+            font-weight: bold;
         }
 
         /* Анимация появления */
@@ -157,6 +204,8 @@
             .logo { font-size: 2.2rem; }
             .nav-buttons { flex-direction: column; width: 100%; padding: 0 20px; }
             .btn { width: 100%; text-align: center; }
+            .version-card { flex-direction: column; text-align: center; }
+            .btn-inner-download { width: 100%; text-align: center; }
         }
     </style>
 </head>
@@ -171,65 +220,116 @@
 
     <main>
         <div class="nav-buttons">
-            <!-- Кнопка скачивания. Укажи правильный путь к архиву в href -->
-            <a href="Doom_Arena.zip" download class="btn btn-download">Скачать игру</a>
-            <button class="btn" onclick="showSection('about')">Об игре</button>
-            <button class="btn" onclick="showSection('updates')">Об обновлениях</button>
+            <button id="btn-download" class="btn" onclick="showSection('download')">Скачать</button>
+            <button id="btn-about" class="btn" onclick="showSection('about')">Об игре</button>
+            <button id="btn-updates" class="btn" onclick="showSection('updates')">Об обновлениях</button>
         </div>
 
-        <!-- Секция: Об игре -->
+        <!-- СЕКЦИЯ: Скачать (Выбор версий) -->
+        <div id="download" class="content-section">
+            <h2>Выберите версию игры для скачивания</h2>
+            
+            <!-- КАРТОЧКА ВЕРСИИ 1.2 -->
+            <div class="version-card">
+                <div class="version-info">
+                    <h3>Doom Arena v1.2 <span class="latest-badge">New</span></h3>
+                    <p>Самая свежая сборка с последними исправлениями и улучшениями.</p>
+                </div>
+                <a href="Doom_Arena_v1.2.zip" download class="btn-inner-download">Скачать v1.2</a>
+            </div>
+
+            <!-- КАРТОЧКА ВЕРСИИ 1.1 -->
+            <div class="version-card">
+                <div class="version-info">
+                    <h3>Doom Arena v1.1</h3>
+                    <p>Промежуточная стабильная версия игры.</p>
+                </div>
+                <a href="Doom_Arena_v1.1.zip" download class="btn-inner-download">Скачать v1.1</a>
+            </div>
+
+            <!-- КАРТОЧКА ВЕРСИИ 1.0 -->
+            <div class="version-card">
+                <div class="version-info">
+                    <h3>Doom Arena v1.0</h3>
+                    <p>Самый первый релиз игры,были воссозданны: 1 пушка, 1 арена, 1 враг и 1 босс.</p>
+                </div>
+                <a href="Doom_Arena_v1.0.zip" download class="btn-inner-download">Скачать v1.0</a>
+            </div>
+        </div>
+
+        <!-- СЕКЦИЯ: Об игре -->
         <div id="about" class="content-section">
             <h2>О проекте Doom Arena</h2>
-            <p>
+            <p style="text-align: justify;">
                 <strong>Doom Arena</strong> — это динамичный шутер с рейтрейсинг-миром, полностью созданный на Python! 
                 Игра представляет собой драйвовую пародию на легендарный Doom, но в более простом и концентрированном формате с битвами на арене против волн врагов.
             </p>
             <br>
-            <p>
+            <p style="text-align: justify;">
                 Текущая версия включает в себя 1 пушку, 1 вид рядовых врагов, 1 арену и 1 мощного босса, который бросит вам вызов строго на 10-й волне. 
                 Так как игра является полностью локальной, её код открыт — вы можете модифицировать и настраивать проект полностью под себя!
             </p>
             <br>
-            <p>
+            <p style="text-align: justify;">
                 <strong>В будущих обновлениях вас ждет:</strong> поддержка пользовательских модов, полноценное проработанное игровое меню, разнообразие арен, уникальные враги, новые боссы и, самое главное, полноценный <strong>Сюжетный режим</strong>. 
-                В более далекой перспективе планируется запуск <strong>Doom Arena Multiplayer (DAM)</strong>, который объединит в себе лучшие наработки первой, второй и третьей версий игры.
+                В более далекой перспективе планируется запуск <strong>Doom Arena Multiplayer (DAM)</strong>, который объединит в себе лучшие наработки первой, второй и третьей версий игры. На текущий момент (12.06.2026) доступна только первая ветка обновлений.
             </p>
         </div>
 
-        <!-- Секция: Об обновлениях -->
+        <!-- СЕКЦИЯ: Об обновлениях -->
         <div id="updates" class="content-section">
             <h2>История обновлений</h2>
-            <p><strong>Версия v1.0 (Текущая от 12.06.2026)</strong></p>
+            
+            <p><strong>Версия v1.2 (Текущая)</strong></p>
             <hr style="border: 0; height: 1px; background: #66fcf1; margin: 10px 0 15px 0; opacity: 0.3;">
-            <p>
-                Это самый первый релиз игры! На данный момент (12.06.2026) воссоздана базовая архитектура проекта:
-            </p>
-            <ul style="margin-left: 20px; margin-top: 10px; list-style-type: square;">
-                <li>Реализована 1 боевая арена;</li>
-                <li>Добавлен 1 вид стандартных врагов для разминки;</li>
-                <li>Доступно 1 мощное оружие;</li>
-                <li>Воссоздан 1 главный Босс (появляется только на 10-й волне).</li>
-            </ul>
+            <p>Были исправленны настройки,так же был добавлен выбор арен,появились новые враги,исправлен баг с не появлением аптечки, а так же добавлена возможность создавать свои моды (будет исправленно в первом патче).Для етой версии на сайте игры будут выходить патчи что бы довести ее до ума.</p>
+            
+            <br>
+
+            <p><strong>Версия v1.1</strong></p>
+            <hr style="border: 0; height: 1px; background: #66fcf1; margin: 10px 0 15px 0; opacity: 0.3;">
+            <p>Были исправленны множественные баги так же оптимизация игры,счетчик фпс в правом верхнем углу,а так же добавлена аптечка,если ваше здоровье ниже 50% восле счетчика фпс появляеться таймер после которого появляеться аптечка ( баг-1).</p>
+            
+            <br>
+            
+            <p><strong>Версия v1.0</strong></p>
+            <hr style="border: 0; height: 1px; background: #66fcf1; margin: 10px 0 15px 0; opacity: 0.3;">
+            <p>В первой версии Doom Arena был воссоздан 1 босс (только на 10 волне), 1 враг, 1 оружие и 1 арена.</p>
         </div>
     </main>
 
     <footer>
-        &copy; 2026 Doom Arena. Все права защищены. Локальная сборка v1.0
+        &copy; 2026 Doom Arena. Все права защищены. Локальная сборка v1.2
     </footer>
 
     <script>
-        // Функция для переключения вкладок
         function showSection(sectionId) {
             // Скрываем все секции
             document.querySelectorAll('.content-section').forEach(section => {
                 section.style.display = 'none';
             });
             
-            // Показываем выбранную секцию
+            // Убираем класс подсветки со всех кнопок
+            document.querySelectorAll('.btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Показываем нужную секцию
             const activeSection = document.getElementById(sectionId);
             if (activeSection) {
                 activeSection.style.display = 'block';
             }
+            
+            // Подсвечиваем нажатую кнопку
+            const activeSub = document.getElementById('btn-' + sectionId);
+            if (activeSub) {
+                activeSub.classList.add('active');
+            }
+        }
+
+        // По умолчанию открываем вкладку "Скачать" при загрузке страницы
+        window.onload = function() {
+            showSection('download');
         }
     </script>
 </body>
